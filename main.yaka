@@ -1,0 +1,47 @@
+directive apply_nativedefine
+
+# Standard libs
+import libs.c
+import libs.strings.refs as r
+import libs.strings.array as sarr
+import libs.console
+import libs.io
+import libs.os
+import libs.os.path as op
+import libs.fileformats.ini
+import libs.numbers as num
+import libs.perlin
+import libs.random
+# Raylib
+import raylib as rl
+import raylib.utils
+# Game engine libraries
+import engine.dialogs
+
+class State:
+    x: int
+    y: int
+
+def game_step(raw_state: utils.Data) -> None:
+    state = cast("State", raw_state)
+    if rl.is_key_down(rl.KEY_RIGHT):
+        state.x += 1
+    if rl.is_key_down(rl.KEY_LEFT):
+        state.x -= 1
+    if rl.is_key_down(rl.KEY_UP):
+        state.y -= 1
+    if rl.is_key_down(rl.KEY_DOWN):
+        state.y += 1
+    rl.begin_drawing()
+    rl.clear_background(rl.color(100, 100, 255, 255))
+    rl.draw_text(c.cstr!{"Hello"}, state.x, state.y, 20, rl.color(255, 255, 255, 255))
+    rl.end_drawing()
+
+def main() -> int:
+    s = State{x: 10, y: 10}
+    defer del s
+    rl.init_window(400, 400, c.cstr!{"Game"})
+    defer rl.close_window()
+    utils.run_game_loop(60, cast("utils.Data", s))
+    0
+

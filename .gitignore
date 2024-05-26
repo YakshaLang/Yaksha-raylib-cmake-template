@@ -288,4 +288,6 @@ cython_debug/
 /cmake-build-release*
 
 imgui.ini
-/CatGame
+
+# Scratch file
+_.*.yaka

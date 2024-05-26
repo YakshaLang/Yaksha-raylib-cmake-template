@@ -1,4 +1,4 @@
-# Yaksha with cmake template project
+# Yaksha+raylib with cmake template project
 
 This is a template project for Yaksha and raylib using CMake.
 
